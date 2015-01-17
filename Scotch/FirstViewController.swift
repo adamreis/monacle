@@ -14,16 +14,8 @@ import AssetsLibrary
 
 class FirstViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-    private var firstVideoURL: NSURL?
-    private var secondVideoURL: NSURL?
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        firstVideoURL = nil
-        secondVideoURL = nil
-    }
-    
+    private var firstVideoURL: NSURL? = nil
+    private var secondVideoURL: NSURL? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +46,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
     }
     
     func stitchVideos(){
-        // From https://abdulazeem.wordpress.com/2012/04/02/
+        // Based on https://abdulazeem.wordpress.com/2012/04/02/
         
         // Load movies
         let firstAsset: AVURLAsset = AVURLAsset(URL: firstVideoURL, options: nil)
@@ -147,6 +139,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
                         if assetsLibrary.videoAtPathIsCompatibleWithSavedPhotosAlbum(exporter.outputURL) {
                             assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(exporter.outputURL, completionBlock: {(NSURL, NSError) -> Void in
                                 fileManager.removeItemAtPath(path, error: nil)
+                                println("Saved to camera roll!")
                                 return
                             })
                         }
