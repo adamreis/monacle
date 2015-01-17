@@ -82,6 +82,10 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         
         secondTrack.insertTimeRange(timeRange, ofTrack: secondAsset.tracksWithMediaType(AVMediaTypeVideo)[0] as AVAssetTrack, atTime: kCMTimeZero, error: &myError)
         
+        // Now create audio track from first asset
+        let audioTrack = mixComposition.addMutableTrackWithMediaType(AVMediaTypeAudio, preferredTrackID: Int32(kCMPersistentTrackID_Invalid))
+        audioTrack.insertTimeRange(timeRange, ofTrack: firstAsset.tracksWithMediaType(AVMediaTypeAudio)[0] as AVAssetTrack, atTime: kCMTimeZero, error: &myError)
+        
         // See how we are creating AVMutableVideoCompositionInstruction object.This object will contain the array of our AVMutableVideoCompositionLayerInstruction objects.You set the duration of the layer.You should add the lenght equal to the lingth of the longer asset in terms of duration.
         let MainInstruction = AVMutableVideoCompositionInstruction()
         MainInstruction.timeRange = timeRange
