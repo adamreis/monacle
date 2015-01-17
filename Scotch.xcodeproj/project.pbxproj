@@ -164,6 +164,7 @@
 				TargetAttributes = {
 					D3A25EA31A6A377E00900281 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = MJ8W6SLGB5;
 					};
 					D3A25EBA1A6A377E00900281 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -409,6 +410,7 @@
 				D3A25EC71A6A377E00900281 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3A25EC81A6A377E00900281 /* Build configuration list for PBXNativeTarget "ScotchTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +419,7 @@
 				D3A25ECA1A6A377E00900281 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
