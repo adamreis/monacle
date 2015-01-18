@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>82FC417E-081C-4F1A-B331-A7CD0AB538C7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Scotch</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5CD0CDA8CF5FA98A07D5BD87CAD0813EAA3AE989</key>
+		<string>github.com:adamreis/i3D.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Scotch.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5CD0CDA8CF5FA98A07D5BD87CAD0813EAA3AE989</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:adamreis/i3D.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5CD0CDA8CF5FA98A07D5BD87CAD0813EAA3AE989</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5CD0CDA8CF5FA98A07D5BD87CAD0813EAA3AE989</string>
+			<key>IDESourceControlWCCName</key>
+			<string>i3D</string>
+		</dict>
+	</array>
+</dict>
+</plist>

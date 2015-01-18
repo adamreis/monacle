@@ -15,6 +15,8 @@
 		D3A25EB61A6A377E00900281 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A25EB41A6A377E00900281 /* LaunchScreen.xib */; };
 		D3A25EC21A6A377E00900281 /* ScotchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25EC11A6A377E00900281 /* ScotchTests.swift */; };
 		EDEDEF751A6B3280005D568F /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEDEF741A6B3280005D568F /* ThirdViewController.swift */; };
+		D3A25ECD1A6A3B4000900281 /* PeerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25ECC1A6A3B4000900281 /* PeerConnector.swift */; };
+		D3A25ECF1A6A3B6700900281 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A25ECE1A6A3B6700900281 /* MultipeerConnectivity.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		D3A25EC01A6A377E00900281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3A25EC11A6A377E00900281 /* ScotchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScotchTests.swift; sourceTree = "<group>"; };
 		EDEDEF741A6B3280005D568F /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		D3A25ECC1A6A3B4000900281 /* PeerConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeerConnector.swift; path = Multipeer/PeerConnector.swift; sourceTree = "<group>"; };
+		D3A25ECE1A6A3B6700900281 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A25ECF1A6A3B6700900281 /* MultipeerConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,8 +68,10 @@
 		D3A25E9B1A6A377E00900281 = {
 			isa = PBXGroup;
 			children = (
+				D3A25ECB1A6A3AAA00900281 /* Multipeer */,
 				D3A25EA61A6A377E00900281 /* Scotch */,
 				D3A25EBE1A6A377E00900281 /* ScotchTests */,
+				D3A25ED01A6A3B6900900281 /* Frameworks */,
 				D3A25EA51A6A377E00900281 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,6 +123,22 @@
 				D3A25EC01A6A377E00900281 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3A25ECB1A6A3AAA00900281 /* Multipeer */ = {
+			isa = PBXGroup;
+			children = (
+				D3A25ECC1A6A3B4000900281 /* PeerConnector.swift */,
+			);
+			name = Multipeer;
+			sourceTree = "<group>";
+		};
+		D3A25ED01A6A3B6900900281 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3A25ECE1A6A3B6700900281 /* MultipeerConnectivity.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3A25EAE1A6A377E00900281 /* SecondViewController.swift in Sources */,
+				D3A25ECD1A6A3B4000900281 /* PeerConnector.swift in Sources */,
 				D3A25EAA1A6A377E00900281 /* AppDelegate.swift in Sources */,
 				EDEDEF751A6B3280005D568F /* ThirdViewController.swift in Sources */,
 				D3A25EAC1A6A377E00900281 /* FirstViewController.swift in Sources */,
