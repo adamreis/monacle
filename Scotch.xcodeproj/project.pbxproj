@@ -14,6 +14,7 @@
 		D3A25EB31A6A377E00900281 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A25EB21A6A377E00900281 /* Images.xcassets */; };
 		D3A25EB61A6A377E00900281 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A25EB41A6A377E00900281 /* LaunchScreen.xib */; };
 		D3A25EC21A6A377E00900281 /* ScotchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25EC11A6A377E00900281 /* ScotchTests.swift */; };
+		EDEDEF751A6B3280005D568F /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEDEF741A6B3280005D568F /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		D3A25EBB1A6A377E00900281 /* ScotchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScotchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A25EC01A6A377E00900281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3A25EC11A6A377E00900281 /* ScotchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScotchTests.swift; sourceTree = "<group>"; };
+		EDEDEF741A6B3280005D568F /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				D3A25EA91A6A377E00900281 /* AppDelegate.swift */,
 				D3A25EAB1A6A377E00900281 /* FirstViewController.swift */,
 				D3A25EAD1A6A377E00900281 /* SecondViewController.swift */,
+				EDEDEF741A6B3280005D568F /* ThirdViewController.swift */,
 				D3A25EAF1A6A377E00900281 /* Main.storyboard */,
 				D3A25EB21A6A377E00900281 /* Images.xcassets */,
 				D3A25EB41A6A377E00900281 /* LaunchScreen.xib */,
@@ -218,6 +221,7 @@
 			files = (
 				D3A25EAE1A6A377E00900281 /* SecondViewController.swift in Sources */,
 				D3A25EAA1A6A377E00900281 /* AppDelegate.swift in Sources */,
+				EDEDEF751A6B3280005D568F /* ThirdViewController.swift in Sources */,
 				D3A25EAC1A6A377E00900281 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
