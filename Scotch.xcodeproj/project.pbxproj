@@ -435,10 +435,13 @@
 			baseConfigurationReference = 89562228FB9A627EFD8366B5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Scotch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -447,10 +450,13 @@
 			baseConfigurationReference = 1F7AD8FC2AA1D49BD2A4F736 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Scotch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

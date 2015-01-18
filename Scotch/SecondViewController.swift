@@ -1,44 +1,61 @@
-import UIKit
-import MultipeerConnectivity
 
-class SecondViewController: UIViewController, MCBrowserViewControllerDelegate {
-    let client = PeerClient()
-    var server: PeerServer?
+import AVFoundation
+import MobileCoreServices
+import MultipeerConnectivity
+import UIKit
+
+class SecondViewController: UIViewController, PeerConnectorDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    let connector = PeerConnector()
+    @IBOutlet weak var sendVideoButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        client.startAdvertisingPeer()
+
+        connector.delegate = self
+        connector.startAdvertisingToPeers()
+        connector.startSearchForPeers()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    @IBAction func connectButtonTouched(sender: UIButton) {
-        if server == nil {
-            server = PeerServer()
+
+    @IBAction func sendVideoPressed(sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+
+            var imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagePicker.mediaTypes = [kUTTypeMovie]
+            imagePicker.allowsEditing = false
+
+            self.presentViewController(imagePicker, animated: true, completion: nil)
         }
-        let browserViewController = server!.createBrowserViewController()
-        browserViewController.delegate = self
-        
-        self.presentViewController(browserViewController, animated: true, completion: nil)
     }
-    
+
+
     // MARK: -
-    // MARK: MCBrowserViewControllerDelegate
-    
-    // Notifies the delegate, when the user taps the done button
-    func browserViewControllerDidFinish(browserViewController: MCBrowserViewController!) {
-        browserViewController.dismissViewControllerAnimated(true, completion: nil)
+    // MARK: UIImagePickerControllerDelegate
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        println("Media selected")
+        let movieURL = info[UIImagePickerControllerReferenceURL] as NSURL
+        picker.dismissViewControllerAnimated(true, completion: nil)
+
+        connector.sendVideo(movieURL)
     }
-    
-    // Notifies delegate that the user taps the cancel button.
-    func browserViewControllerWasCancelled(browserViewController: MCBrowserViewController!) {
-        browserViewController.dismissViewControllerAnimated(true) {
-            println("Animation canceled")
-        }
+
+    // MARK: -
+    // MARK: PeerConnectorDelegate
+
+    func connector(connector: PeerConnector, didConnectToPeer peerID: MCPeerID) {
+        sendVideoButton.enabled = true
+    }
+
+    func connector(connector: PeerConnector, didFinishVideoSend videoURL: NSURL) {
+
     }
 }
 
