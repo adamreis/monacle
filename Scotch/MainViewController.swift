@@ -55,34 +55,44 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
         vision.outputFormat = PBJOutputFormat.Standard
         vision.captureSessionPreset = AVCaptureSessionPresetHigh
         
-        let vibrancyEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Dark))
-        let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
-        vibrancyView.frame = view.frame
-        vibrancyView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.view.addSubview(vibrancyView)
+//        let vibrancyEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Dark))
+//        let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
+//        vibrancyView.frame = view.frame
+//        vibrancyView.setTranslatesAutoresizingMaskIntoConstraints(false)
+//        self.view.addSubview(vibrancyView)
         
         
-        LRLabel = UILabel(frame: vibrancyView.frame)
+//        LRLabel = UILabel(frame: vibrancyView.frame)
+        LRLabel = UILabel(frame: view.frame)
         LRLabel!.center = CGPointMake(140, 426)
         LRLabel!.textAlignment = .Center
         LRLabel!.font = UIFont.systemFontOfSize(250)
         LRLabel!.textColor = UIColor.whiteColor()
         LRLabel!.text = ""
         LRLabel!.hidden = true
-        vibrancyView.contentView.addSubview(LRLabel!)
+        previewView.addSubview(LRLabel!)
+        
+        view.backgroundColor = UIColor.orangeColor()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+    }
+    
+    
     @IBAction func longPressRecognized(sender: UILongPressGestureRecognizer) {
         switch sender.state {
         case .Began:
             ourRole = .Master
             connector.sendSignal(connector.getOneClientID(), messageType: .StartRecording)
             PBJVision.sharedInstance().startVideoCapture()
+            LRLabel!.hidden = true
         case .Changed:
             break
         default:
             connector.sendSignal(connector.getOneClientID(), messageType: .StopRecording)
             PBJVision.sharedInstance().endVideoCapture()
+            LRLabel!.hidden = false
         }
     }
     
@@ -101,8 +111,10 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
         
         if assetsLibrary.videoAtPathIsCompatibleWithSavedPhotosAlbum(videoURL) {
             assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(videoURL, completionBlock: {(NSURL, NSError) -> Void in
-                let alert = UIAlertView(title: "Video Saved!", message: "Saved to camera roll.", delegate: self, cancelButtonTitle: nil, otherButtonTitles: "OK")
-                alert.show()
+                if self.ourRole == .Slave {
+                    let alert = UIAlertView(title: "Video Sent!", message: "Sent video and saved to camera roll.", delegate: self, cancelButtonTitle: nil, otherButtonTitles: "OK")
+                    alert.show()
+                }
                 return
             })
         }
@@ -131,6 +143,7 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
         }
         println("ourSide: \(ourSide?.rawValue)")
         LRLabel!.hidden = false
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
         PBJVision.sharedInstance().startPreview()
     }
     
@@ -149,16 +162,25 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
             rightURL = ourVidURL
         }
         
-        stitchVideos(leftURL!, rightURL!)
+//        stitchVideos(leftURL!, rightURL!)
+        stitchVideos(leftURL!, rightURL!) { (result) -> Void in
+            let alert = UIAlertView(title: "Video Saved!", message: "Saved 3D video to camera roll.", delegate: self, cancelButtonTitle: nil, otherButtonTitles: "OK")
+            alert.show()
+            return
+        }
     }
     
     func receivedSignal(signalType: MessageTypes) {
         switch signalType {
         case .StartRecording:
             PBJVision.sharedInstance().startVideoCapture()
+            LRLabel!.hidden = true
+            println("start recording")
             ourRole = .Slave
         case .StopRecording:
             PBJVision.sharedInstance().endVideoCapture()
+            LRLabel!.hidden = false
+            println("stop recording")
         }
         
     }

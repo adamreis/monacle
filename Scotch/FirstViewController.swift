@@ -25,7 +25,9 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
             println("Have both videos!")
             println(firstVideoURL)
             println(secondVideoURL)
-            stitchVideos(firstVideoURL!, secondVideoURL!)
+            stitchVideos(firstVideoURL!, secondVideoURL!, { (result) -> Void in
+                return
+            })
         }
     }
     

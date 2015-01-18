@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 import AssetsLibrary
 
-func stitchVideos(url1: NSURL, url2: NSURL){
+func stitchVideos(url1: NSURL, url2: NSURL, completion: (result: String) -> Void){
     // Based on https://abdulazeem.wordpress.com/2012/04/02/
     
     // Load movies
@@ -92,6 +92,7 @@ func stitchVideos(url1: NSURL, url2: NSURL){
                         assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(exporter.outputURL, completionBlock: {(NSURL, NSError) -> Void in
                             fileManager.removeItemAtPath(path, error: nil)
                             println("Saved to camera roll!")
+                            completion(result: "Success")
                             return
                         })
                     }

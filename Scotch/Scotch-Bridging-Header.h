@@ -11,5 +11,6 @@
 
 #import <UIKit/UIKit.h>
 #import "PBJVision.h"
+#import "MBProgressHUD.h"
 
 #endif
