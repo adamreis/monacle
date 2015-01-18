@@ -13,7 +13,7 @@ import AVFoundation
 import AssetsLibrary
 
 class FirstViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
+    
     private var firstVideoURL: NSURL?
     private var secondVideoURL: NSURL?
     
@@ -28,7 +28,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
             println(firstVideoURL)
             println(secondVideoURL)
             self.stitchVideos()
-//            self.playVideo()
+            //            self.playVideo()
         }
     }
     
@@ -108,7 +108,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         let mPlaybackView = AVPlayerLayer(player:mPlayer)
         mPlaybackView.frame = self.view.frame
         mPlayer.play()
-
+        
         let containerView = UIView(frame: self.view.frame)
         containerView.layer.addSublayer(mPlaybackView)
         self.view.addSubview(containerView)
@@ -149,7 +149,7 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         }
     }
     
-
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         println("I've got some media")
@@ -162,5 +162,5 @@ class FirstViewController: UIViewController, UINavigationControllerDelegate, UII
         picker.dismissViewControllerAnimated(true, completion: nil)
         
     }
-
+    
 }

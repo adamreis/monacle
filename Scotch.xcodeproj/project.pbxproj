@@ -8,15 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		D3A25EAA1A6A377E00900281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25EA91A6A377E00900281 /* AppDelegate.swift */; };
-		D3A25EAC1A6A377E00900281 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25EAB1A6A377E00900281 /* FirstViewController.swift */; };
-		D3A25EAE1A6A377E00900281 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25EAD1A6A377E00900281 /* SecondViewController.swift */; };
-		D3A25EB11A6A377E00900281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3A25EAF1A6A377E00900281 /* Main.storyboard */; };
 		D3A25EB31A6A377E00900281 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A25EB21A6A377E00900281 /* Images.xcassets */; };
 		D3A25EB61A6A377E00900281 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A25EB41A6A377E00900281 /* LaunchScreen.xib */; };
 		D3A25EC21A6A377E00900281 /* ScotchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25EC11A6A377E00900281 /* ScotchTests.swift */; };
-		EDEDEF751A6B3280005D568F /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEDEF741A6B3280005D568F /* ThirdViewController.swift */; };
 		D3A25ECD1A6A3B4000900281 /* PeerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25ECC1A6A3B4000900281 /* PeerConnector.swift */; };
 		D3A25ECF1A6A3B6700900281 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A25ECE1A6A3B6700900281 /* MultipeerConnectivity.framework */; };
+		ED78942B1A6B39A20056935F /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7894291A6B39A20056935F /* ThirdViewController.swift */; };
+		ED78942C1A6B39A20056935F /* ThirdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED78942A1A6B39A20056935F /* ThirdViewController.xib */; };
+		ED7894311A6B3B7A0056935F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78942F1A6B3B7A0056935F /* SecondViewController.swift */; };
+		ED7894321A6B3B7A0056935F /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7894301A6B3B7A0056935F /* SecondViewController.xib */; };
+		ED7894371A6B3BDA0056935F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7894351A6B3BDA0056935F /* FirstViewController.swift */; };
+		ED7894381A6B3BDA0056935F /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7894361A6B3BDA0056935F /* FirstViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,17 +35,19 @@
 		D3A25EA41A6A377E00900281 /* Scotch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scotch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A25EA81A6A377E00900281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3A25EA91A6A377E00900281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D3A25EAB1A6A377E00900281 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		D3A25EAD1A6A377E00900281 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		D3A25EB01A6A377E00900281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3A25EB21A6A377E00900281 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D3A25EB51A6A377E00900281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D3A25EBB1A6A377E00900281 /* ScotchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScotchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A25EC01A6A377E00900281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3A25EC11A6A377E00900281 /* ScotchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScotchTests.swift; sourceTree = "<group>"; };
-		EDEDEF741A6B3280005D568F /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		D3A25ECC1A6A3B4000900281 /* PeerConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeerConnector.swift; path = Multipeer/PeerConnector.swift; sourceTree = "<group>"; };
 		D3A25ECE1A6A3B6700900281 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		ED7894291A6B39A20056935F /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		ED78942A1A6B39A20056935F /* ThirdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdViewController.xib; sourceTree = "<group>"; };
+		ED78942F1A6B3B7A0056935F /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		ED7894301A6B3B7A0056935F /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
+		ED7894351A6B3BDA0056935F /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		ED7894361A6B3BDA0056935F /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,10 +93,12 @@
 			isa = PBXGroup;
 			children = (
 				D3A25EA91A6A377E00900281 /* AppDelegate.swift */,
-				D3A25EAB1A6A377E00900281 /* FirstViewController.swift */,
-				D3A25EAD1A6A377E00900281 /* SecondViewController.swift */,
-				EDEDEF741A6B3280005D568F /* ThirdViewController.swift */,
-				D3A25EAF1A6A377E00900281 /* Main.storyboard */,
+				ED7894351A6B3BDA0056935F /* FirstViewController.swift */,
+				ED7894361A6B3BDA0056935F /* FirstViewController.xib */,
+				ED78942F1A6B3B7A0056935F /* SecondViewController.swift */,
+				ED7894301A6B3B7A0056935F /* SecondViewController.xib */,
+				ED7894291A6B39A20056935F /* ThirdViewController.swift */,
+				ED78942A1A6B39A20056935F /* ThirdViewController.xib */,
 				D3A25EB21A6A377E00900281 /* Images.xcassets */,
 				D3A25EB41A6A377E00900281 /* LaunchScreen.xib */,
 				D3A25EA71A6A377E00900281 /* Supporting Files */,
@@ -222,9 +228,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3A25EB11A6A377E00900281 /* Main.storyboard in Resources */,
+				ED7894381A6B3BDA0056935F /* FirstViewController.xib in Resources */,
 				D3A25EB61A6A377E00900281 /* LaunchScreen.xib in Resources */,
+				ED78942C1A6B39A20056935F /* ThirdViewController.xib in Resources */,
 				D3A25EB31A6A377E00900281 /* Images.xcassets in Resources */,
+				ED7894321A6B3B7A0056935F /* SecondViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,11 +250,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3A25EAE1A6A377E00900281 /* SecondViewController.swift in Sources */,
+				ED7894371A6B3BDA0056935F /* FirstViewController.swift in Sources */,
 				D3A25ECD1A6A3B4000900281 /* PeerConnector.swift in Sources */,
+				ED78942B1A6B39A20056935F /* ThirdViewController.swift in Sources */,
 				D3A25EAA1A6A377E00900281 /* AppDelegate.swift in Sources */,
-				EDEDEF751A6B3280005D568F /* ThirdViewController.swift in Sources */,
-				D3A25EAC1A6A377E00900281 /* FirstViewController.swift in Sources */,
+				ED7894311A6B3B7A0056935F /* SecondViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,14 +277,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D3A25EAF1A6A377E00900281 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D3A25EB01A6A377E00900281 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D3A25EB41A6A377E00900281 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
