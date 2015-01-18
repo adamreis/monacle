@@ -1,21 +1,41 @@
 //
-//  FourthViewController.swift
+//  MainViewController.swift
 //  Scotch
 //
-//  Created by Adam Reis on 1/17/15.
+//  Created by Adam Reis on 1/18/15.
 //  Copyright (c) 2015 Brian Donghee Shin. All rights reserved.
 //
 
 import UIKit
+import MultipeerConnectivity
 import AssetsLibrary
 
-class FourthViewController: UIViewController, PBJVisionDelegate, UIAlertViewDelegate {
+enum Side : Int {
+    case Left
+    case Right
+}
 
-    @IBOutlet var longPressGestureRecognizer: UILongPressGestureRecognizer!
+enum Role : Int {
+    case Master
+    case Slave
+}
+
+class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDelegate, UIAlertViewDelegate {
+
+    let connector = PeerConnector()
+    var ourRole: Role?
+    var ourSide: Side?
     var LRLabel: UILabel?
+    var ourVidURL: NSURL?
+    
+    @IBOutlet var longPressRecognizer: UILongPressGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        connector.delegate = self
+        connector.startAdvertisingToPeers()
+        connector.startSearchForPeers()
         
         let previewView = UIView(frame: CGRectZero)
         previewView.backgroundColor = UIColor.blackColor()
@@ -47,26 +67,21 @@ class FourthViewController: UIViewController, PBJVisionDelegate, UIAlertViewDele
         LRLabel!.textAlignment = .Center
         LRLabel!.font = UIFont.systemFontOfSize(250)
         LRLabel!.textColor = UIColor.whiteColor()
-        LRLabel!.text = "L"
+        LRLabel!.text = ""
+        LRLabel!.hidden = true
         vibrancyView.contentView.addSubview(LRLabel!)
-        
-        PBJVision.sharedInstance().startPreview()
-        println("viewDidLoad finished")
     }
 
-    override func viewDidAppear(animated: Bool) {
-        println("viewDidAppear")
-        
-    }
-    
-    @IBAction func handleLongPress(sender: UILongPressGestureRecognizer) {
-        
+    @IBAction func longPressRecognized(sender: UILongPressGestureRecognizer) {
         switch sender.state {
         case .Began:
+            ourRole = .Master
+            connector.sendSignal(connector.getOneClientID(), messageType: .StartRecording)
             PBJVision.sharedInstance().startVideoCapture()
         case .Changed:
             break
         default:
+            connector.sendSignal(connector.getOneClientID(), messageType: .StopRecording)
             PBJVision.sharedInstance().endVideoCapture()
         }
     }
@@ -92,23 +107,59 @@ class FourthViewController: UIViewController, PBJVisionDelegate, UIAlertViewDele
             })
         }
         
+        if ourRole == .Slave {
+            connector.sendVideo(videoURL!)
+        }
+        ourVidURL = videoURL
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    // MARK: -
+    // MARK: PeerConnectorDelegate
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func connector(connector: PeerConnector, didConnectToPeer peerID: MCPeerID) {
+        if connector.localPeerID.displayName < peerID.displayName {
+            ourSide = .Left
+            LRLabel!.text = "L"
+        } else {
+            ourSide = .Right
+            LRLabel!.text = "R"
+        }
+        println("ourSide: \(ourSide?.rawValue)")
+        LRLabel!.hidden = false
+        PBJVision.sharedInstance().startPreview()
     }
-    */
-
+    
+    func connector(connector: PeerConnector, didFinishVideoSend videoURL: NSURL) {
+        
+    }
+    
+    func connector(connector: PeerConnector, didFinishVieoRecieve videoURL: NSURL) {
+        var leftURL, rightURL: NSURL?
+        switch ourSide! {
+        case .Left:
+            leftURL = ourVidURL
+            rightURL = videoURL
+        default:
+            leftURL = videoURL
+            rightURL = ourVidURL
+        }
+        
+        stitchVideos(leftURL!, rightURL!)
+    }
+    
+    func receivedSignal(signalType: MessageTypes) {
+        switch signalType {
+        case .StartRecording:
+            PBJVision.sharedInstance().startVideoCapture()
+            ourRole = .Slave
+        case .StopRecording:
+            PBJVision.sharedInstance().endVideoCapture()
+        }
+        
+    }
 }

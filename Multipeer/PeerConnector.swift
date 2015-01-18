@@ -11,6 +11,11 @@ enum PeerType : Int {
     case Client = 1
 }
 
+enum MessageTypes: String {
+    case StartRecording = "Start"
+    case StopRecording = "Stop"
+}
+
 class PeerConnector: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
     let localPeerID: MCPeerID
     let session: MCSession
@@ -83,6 +88,19 @@ class PeerConnector: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAd
         delegate?.connector(self, didConnectToPeer: peerID)
     }
     
+    func sendSignal(peerID: MCPeerID, messageType: MessageTypes) {
+        println("Sending signal \(messageType.rawValue) to \(peerID.displayName)")
+        let rootObject: [String: String] = ["type": messageType.rawValue]
+        let data = NSKeyedArchiver.archivedDataWithRootObject(rootObject)
+        
+        messageType.rawValue
+        var error: NSError?
+        
+        if !session.sendData(data, toPeers: [peerID], withMode: MCSessionSendDataMode.Reliable, error: &error) {
+            println("Sync Error: \(error)")
+        }
+    }
+    
     func sendVideo(assetURL: NSURL) {
         let clientID = getOneClientID()
         
@@ -109,7 +127,8 @@ class PeerConnector: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAd
     }
     
     func connectedToPeer(peerID: MCPeerID) {
-        syncWithClient(peerID)
+//        syncWithClient(peerID)
+        delegate?.connector(self, didConnectToPeer: peerID)
     }
     
     // MARK: -
@@ -147,6 +166,8 @@ class PeerConnector: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAd
         if assetsLibrary.videoAtPathIsCompatibleWithSavedPhotosAlbum(newURL) {
             assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(newURL, completionBlock: { (newlySavedURL: NSURL!, error: NSError!) -> Void in
                 println("Video save complete")
+                
+                self.delegate?.connector(self, didFinishVieoRecieve: newlySavedURL)
             })
         } else {
             println("Video not compatible")
@@ -233,6 +254,11 @@ class PeerSessionManager: NSObject, MCSessionDelegate {
     // Received data from remote peer
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         println("Got data: \(data)")
+        
+        let dict = NSKeyedUnarchiver.unarchiveObjectWithData(data) as [String: String]
+        let signalType = MessageTypes(rawValue: dict["type"]!)!
+        
+        parentConnector?.delegate?.receivedSignal(signalType)
     }
     
     // Received a byte stream from remote peer
@@ -255,4 +281,8 @@ protocol PeerConnectorDelegate: NSObjectProtocol {
     func connector(connector: PeerConnector, didConnectToPeer peerID: MCPeerID)
     
     func connector(connector: PeerConnector, didFinishVideoSend videoURL: NSURL)
+    
+    func connector(connector: PeerConnector, didFinishVieoRecieve videoURL: NSURL)
+    
+    func receivedSignal(signalType: MessageTypes)
 }

@@ -21,6 +21,8 @@
 		ED7894371A6B3BDA0056935F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7894351A6B3BDA0056935F /* FirstViewController.swift */; };
 		ED7894381A6B3BDA0056935F /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7894361A6B3BDA0056935F /* FirstViewController.xib */; };
 		ED9836EA1A6B7CB000C8D9C7 /* VideoProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9836E91A6B7CB000C8D9C7 /* VideoProcessing.swift */; };
+		ED9836F11A6B881F00C8D9C7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9836EF1A6B881F00C8D9C7 /* MainViewController.swift */; };
+		ED9836F21A6B881F00C8D9C7 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9836F01A6B881F00C8D9C7 /* MainViewController.xib */; };
 		EDE3DF721A6B4B5200305192 /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE3DF701A6B4B5200305192 /* FourthViewController.swift */; };
 		EDE3DF731A6B4B5200305192 /* FourthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE3DF711A6B4B5200305192 /* FourthViewController.xib */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,8 @@
 		ED7894351A6B3BDA0056935F /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		ED7894361A6B3BDA0056935F /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		ED9836E91A6B7CB000C8D9C7 /* VideoProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoProcessing.swift; sourceTree = "<group>"; };
+		ED9836EF1A6B881F00C8D9C7 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		ED9836F01A6B881F00C8D9C7 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		EDE3DF701A6B4B5200305192 /* FourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
 		EDE3DF711A6B4B5200305192 /* FourthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourthViewController.xib; sourceTree = "<group>"; };
 		EDE66C591A6B4CDA00FBA735 /* Scotch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scotch-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				D3A25EB21A6A377E00900281 /* Images.xcassets */,
 				D3A25EB41A6A377E00900281 /* LaunchScreen.xib */,
 				D3A25EA71A6A377E00900281 /* Supporting Files */,
+				ED9836EF1A6B881F00C8D9C7 /* MainViewController.swift */,
+				ED9836F01A6B881F00C8D9C7 /* MainViewController.xib */,
 			);
 			path = Scotch;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 				ED78942C1A6B39A20056935F /* ThirdViewController.xib in Resources */,
 				D3A25EB31A6A377E00900281 /* Images.xcassets in Resources */,
 				EDE3DF731A6B4B5200305192 /* FourthViewController.xib in Resources */,
+				ED9836F21A6B881F00C8D9C7 /* MainViewController.xib in Resources */,
 				ED7894321A6B3B7A0056935F /* SecondViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +327,7 @@
 				ED78942B1A6B39A20056935F /* ThirdViewController.swift in Sources */,
 				D3A25EAA1A6A377E00900281 /* AppDelegate.swift in Sources */,
 				ED7894311A6B3B7A0056935F /* SecondViewController.swift in Sources */,
+				ED9836F11A6B881F00C8D9C7 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,8 +448,8 @@
 				INFOPLIST_FILE = Scotch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -455,8 +463,8 @@
 				INFOPLIST_FILE = Scotch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
 			};
 			name = Release;
 		};

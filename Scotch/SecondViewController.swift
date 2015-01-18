@@ -4,7 +4,7 @@ import MobileCoreServices
 import MultipeerConnectivity
 import UIKit
 
-class SecondViewController: UIViewController, PeerConnectorDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let connector = PeerConnector()
     @IBOutlet weak var sendVideoButton: UIButton!
@@ -12,7 +12,7 @@ class SecondViewController: UIViewController, PeerConnectorDelegate, UIImagePick
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        connector.delegate = self
+//        connector.delegate = self
         connector.startAdvertisingToPeers()
         connector.startSearchForPeers()
     }
