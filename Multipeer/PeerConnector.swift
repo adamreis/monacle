@@ -11,23 +11,30 @@ enum PeerType : Int {
     case Client = 1
 }
 
-class PeerConnector: NSObject, MCSessionDelegate {
+class PeerConnector: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate {
     let localPeerID: MCPeerID
     let session: MCSession
-    var connectingPeers = NSMutableOrderedSet()
-    var disconnectedPeers = NSMutableOrderedSet()
+    
+    var currentBrowser: MCNearbyServiceBrowser?
     weak var delegate: PeerConnectorDelegate?
+    
+    var assistant: MCAdvertiserAssistant?
+    let sessionManager: PeerSessionManager
     
     override init() {
         localPeerID = MCPeerID(displayName: UIDevice.currentDevice().name)
         session = MCSession(peer: localPeerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.None)
+        assistant = MCAdvertiserAssistant(serviceType: serviceType, discoveryInfo: nil, session: session)
+        
+        sessionManager = PeerSessionManager(fromSession: session)
+        
         super.init()
         
-        session.delegate = self
+        sessionManager.parentConnector = self
     }
     
-    func connectedToPeer(peerID: MCPeerID) {
-        // Meant to be overridden
+    deinit {
+        assistant!.stop()
     }
     
     func genTempExporterForVideo(assetURL: NSURL) -> AVAssetExportSession {
@@ -46,94 +53,20 @@ class PeerConnector: NSObject, MCSessionDelegate {
     }
     
     // MARK: -
-    // MARK: MCSessionDelegate
+    // MARK: Sending methods
     
-    // Remote peer changed state
-    func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
-        
-        println("Peer \(peerID) changed state: \(state.rawValue)")
-        
-        switch state {
-        case .Connecting:
-            connectingPeers.addObject(peerID)
-            disconnectedPeers.removeObject(peerID)
-        case .Connected:
-            connectingPeers.removeObject(peerID)
-            disconnectedPeers.removeObject(peerID)
-            
-            connectedToPeer(peerID)
-            
-        case .NotConnected:
-            connectingPeers.removeObject(peerID)
-            disconnectedPeers.addObject(peerID)
-        }
-    }
-    
-    // Received data from remote peer
-    func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
-        println("Got data: \(data)")
-    }
-    
-    // Received a byte stream from remote peer
-    func session(session: MCSession!, didReceiveStream stream: NSInputStream!, withName streamName: String!, fromPeer peerID: MCPeerID!) {
-        
-    }
-    
-    // Start receiving a resource from remote peer
-    func session(session: MCSession!, didStartReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, withProgress progress: NSProgress!) {
-        println("didStartReceivingResource Video")
-    }
-    
-    // Finished receiving a resource from remote peer and saved the content in a temporary location - the app is responsible for moving the file to a permanent location within its sandbox
-    func session(session: MCSession!, didFinishReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, atURL localURL: NSURL!, withError error: NSError!) {
-        if error != nil {
-            println("Session saving error: \(error)")
-            return
-        }
-        
-        let fileManager = NSFileManager()
-        let newURL = NSURL(string: resourceName, relativeToURL: localURL.URLByDeletingLastPathComponent)!
-        
-        // Delete whatever was there originally
-        fileManager.removeItemAtURL(newURL, error: nil)
-        
-        fileManager.moveItemAtURL(localURL, toURL: newURL, error: nil)
-        
-        let assetsLibrary = ALAssetsLibrary()
-        if assetsLibrary.videoAtPathIsCompatibleWithSavedPhotosAlbum(newURL) {
-            assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(newURL, completionBlock: { (newlySavedURL: NSURL!, error: NSError!) -> Void in
-                println("Video save complete")
-            })
-        } else {
-            println("Video not compatible")
-        }
-    }
-}
-
-class PeerServer: PeerConnector, MCNearbyServiceBrowserDelegate {
-    var currentBrowser: MCNearbyServiceBrowser?
-    
-    override init() {
-        super.init()
-    }
-    
-    func createBrowserViewController() -> MCBrowserViewController {
-        let browser = MCNearbyServiceBrowser(peer: localPeerID, serviceType: serviceType)
-        let browserViewController = MCBrowserViewController(browser: browser, session: session)
-        browserViewController.minimumNumberOfPeers = 2
-        browserViewController.maximumNumberOfPeers = 2
-        
-        return browserViewController
-    }
-    
-    func connectToClient() {
+    func startSearchForPeers() {
         if currentBrowser == nil {
             currentBrowser = MCNearbyServiceBrowser(peer: localPeerID, serviceType: serviceType)
             currentBrowser!.delegate = self
         }
         
         println("Started browsing for peers")
-        currentBrowser?.startBrowsingForPeers()
+        currentBrowser!.startBrowsingForPeers()
+    }
+    
+    func stopSearchingForPeers() {
+        currentBrowser?.stopBrowsingForPeers()
     }
     
     func syncWithClient(peerID: MCPeerID) {
@@ -175,8 +108,50 @@ class PeerServer: PeerConnector, MCNearbyServiceBrowserDelegate {
         return session.connectedPeers.last as MCPeerID
     }
     
-    override func connectedToPeer(peerID: MCPeerID) {
+    func connectedToPeer(peerID: MCPeerID) {
         syncWithClient(peerID)
+    }
+    
+    // MARK: -
+    // MARK: Listening methods
+    
+    func startAdvertisingToPeers() {
+        assistant!.start()
+        println("Advertising started")
+    }
+    
+    func peerCountChanged(newCount: Int) {
+        if newCount >= 2 {
+            stopSearchingForPeers()
+        } else {
+            startSearchForPeers()
+        }
+    }
+    
+    func saveVideo(session: MCSession!, didFinishReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, atURL localURL: NSURL!, withError error: NSError!) {
+        
+        if error != nil {
+            println("Session saving error: \(error)")
+            return
+        }
+        
+        let fileManager = NSFileManager()
+        let newURL = NSURL(string: resourceName, relativeToURL: localURL.URLByDeletingLastPathComponent)!
+        
+        // Delete whatever was there originally
+        fileManager.removeItemAtURL(newURL, error: nil)
+        
+        fileManager.moveItemAtURL(localURL, toURL: newURL, error: nil)
+        
+        let assetsLibrary = ALAssetsLibrary()
+        if assetsLibrary.videoAtPathIsCompatibleWithSavedPhotosAlbum(newURL) {
+            assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(newURL, completionBlock: { (newlySavedURL: NSURL!, error: NSError!) -> Void in
+                println("Video save complete")
+            })
+        } else {
+            println("Video not compatible")
+        }
+        
     }
     
     // MARK: -
@@ -199,32 +174,11 @@ class PeerServer: PeerConnector, MCNearbyServiceBrowserDelegate {
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
         println("PeerID stopped broadcasting: \(peerID.displayName)")
     }
-}
-
-class PeerClient: PeerConnector {
-    var assistant: MCAdvertiserAssistant?
-    
-    override init() {
-        let tempLocalPeer = MCPeerID(displayName: UIDevice.currentDevice().name)
-        
-        super.init()
-        
-        assistant = MCAdvertiserAssistant(serviceType: serviceType, discoveryInfo: nil, session: session)
-    }
-    
-    deinit {
-        assistant!.stop()
-    }
-    
-    func startAdvertisingPeer() {
-        assistant!.start()
-        println("Advertising started")
-    }
     
     // MARK: -
     // MARK: MCNearbyServiceAdvertiserDelegate
     func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
-
+        
         println("Accepted invitation from peer: \(peerID)")
         
         invitationHandler(true, session)
@@ -232,6 +186,68 @@ class PeerClient: PeerConnector {
     
     func advertiser(advertiser: MCNearbyServiceAdvertiser!, didNotStartAdvertisingPeer error: NSError!) {
         println("Advertising error : \(error)")
+    }
+}
+
+class PeerSessionManager: NSObject, MCSessionDelegate {
+    var connectingPeers = NSMutableOrderedSet()
+    var disconnectedPeers = NSMutableOrderedSet()
+    let session: MCSession
+    weak var parentConnector: PeerConnector?
+    
+    init(fromSession session: MCSession) {
+        self.session = session
+        
+        super.init()
+        
+        session.delegate = self
+    }
+    
+    // MARK: -
+    // MARK: MCSessionDelegate
+    
+    // Remote peer changed state
+    func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
+        
+        println("Peer \(peerID) changed state: \(state.rawValue)")
+        
+        switch state {
+        case .Connecting:
+            connectingPeers.addObject(peerID)
+            disconnectedPeers.removeObject(peerID)
+        case .Connected:
+            connectingPeers.removeObject(peerID)
+            disconnectedPeers.removeObject(peerID)
+            
+            parentConnector?.connectedToPeer(peerID)
+            
+        case .NotConnected:
+            connectingPeers.removeObject(peerID)
+            disconnectedPeers.addObject(peerID)
+        }
+        
+        let totalCount = session.connectedPeers.count + connectingPeers.count
+        parentConnector?.peerCountChanged(totalCount)
+    }
+    
+    // Received data from remote peer
+    func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
+        println("Got data: \(data)")
+    }
+    
+    // Received a byte stream from remote peer
+    func session(session: MCSession!, didReceiveStream stream: NSInputStream!, withName streamName: String!, fromPeer peerID: MCPeerID!) {
+        
+    }
+    
+    // Start receiving a resource from remote peer
+    func session(session: MCSession!, didStartReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, withProgress progress: NSProgress!) {
+        println("didStartReceivingResource Video")
+    }
+    
+    // Finished receiving a resource from remote peer and saved the content in a temporary location - the app is responsible for moving the file to a permanent location within its sandbox
+    func session(session: MCSession!, didFinishReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, atURL localURL: NSURL!, withError error: NSError!) {
+        parentConnector?.saveVideo(session, didFinishReceivingResourceWithName: resourceName, fromPeer: peerID, atURL: localURL, withError: error)
     }
 }
 
