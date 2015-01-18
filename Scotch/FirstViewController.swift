@@ -2,7 +2,7 @@
 //  FirstViewController.swift
 //  Scotch
 //
-//  Created by Brian Donghee Shin on 1/17/15.
+//  Created by Adam Reis on 1/17/15.
 //  Copyright (c) 2015 Adam Reis. All rights reserved.
 //
 
@@ -14,8 +14,8 @@ import AssetsLibrary
 
 class FirstViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-    private var firstVideoURL: NSURL? = nil
-    private var secondVideoURL: NSURL? = nil
+    private var firstVideoURL: NSURL?
+    private var secondVideoURL: NSURL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
