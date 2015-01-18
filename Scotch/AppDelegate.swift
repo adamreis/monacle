@@ -7,30 +7,35 @@
 //
 
 import UIKit
-//import FirstViewController
-//import SecondViewController
-//import ThirdViewController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var tabBarController: UITabBarController?
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let tabBarController = UITabBarController()
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        window?.makeKeyAndVisible()
+        
+        tabBarController = UITabBarController()
         
         let vc1 = FirstViewController(nibName: "FirstViewController", bundle: nil)
         let vc2 = SecondViewController(nibName: "SecondViewController", bundle: nil)
         let vc3 = ThirdViewController(nibName: "ThirdViewController", bundle: nil)
+        let vc4 = FourthViewController(nibName: "FourthViewController", bundle: nil)
         
         vc1.tabBarItem = UITabBarItem(title: "First", image: nil, tag: 1)
         vc2.tabBarItem = UITabBarItem(title: "Second", image: nil, tag: 2)
         vc3.tabBarItem = UITabBarItem(title: "Third", image: nil, tag: 3)
+        vc4.tabBarItem = UITabBarItem(title: "Fourth", image: nil, tag: 4)
         
-        tabBarController.viewControllers = [vc1, vc2, vc3]
-        window?.rootViewController = tabBarController
+        tabBarController!.viewControllers = [vc1, vc2, vc3, vc4]
+        window!.rootViewController = tabBarController
+//        window!.rootViewController = vc4
         
         return true
     }

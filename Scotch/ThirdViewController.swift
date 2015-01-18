@@ -76,7 +76,10 @@ class ThirdViewController: UIViewController {
         startPreview()
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.view.layer.addSublayer(previewLayer)
-        previewLayer?.frame = self.view.layer.frame
+        self.view.backgroundColor = UIColor.yellowColor()
+//        previewLayer?.frame = self.view.layer.frame
+//        previewLayer?.frame = CGRectMake(0,0,300,300)
+        previewLayer?.frame = CGRectMake(0, 0, UIScreen.mainScreen().applicationFrame.size.width, UIScreen.mainScreen().applicationFrame.size.width)
         captureSession.startRunning()
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 5))

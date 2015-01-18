@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59F462EEF97CFD618941FA09 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44381145B49B0ED2C2E552EC /* libPods.a */; };
 		D3A25EAA1A6A377E00900281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25EA91A6A377E00900281 /* AppDelegate.swift */; };
 		D3A25EB31A6A377E00900281 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A25EB21A6A377E00900281 /* Images.xcassets */; };
 		D3A25EB61A6A377E00900281 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A25EB41A6A377E00900281 /* LaunchScreen.xib */; };
@@ -19,6 +20,9 @@
 		ED7894321A6B3B7A0056935F /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7894301A6B3B7A0056935F /* SecondViewController.xib */; };
 		ED7894371A6B3BDA0056935F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7894351A6B3BDA0056935F /* FirstViewController.swift */; };
 		ED7894381A6B3BDA0056935F /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7894361A6B3BDA0056935F /* FirstViewController.xib */; };
+		ED9836EA1A6B7CB000C8D9C7 /* VideoProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9836E91A6B7CB000C8D9C7 /* VideoProcessing.swift */; };
+		EDE3DF721A6B4B5200305192 /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE3DF701A6B4B5200305192 /* FourthViewController.swift */; };
+		EDE3DF731A6B4B5200305192 /* FourthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE3DF711A6B4B5200305192 /* FourthViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F7AD8FC2AA1D49BD2A4F736 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		44381145B49B0ED2C2E552EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		89562228FB9A627EFD8366B5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D3A25EA41A6A377E00900281 /* Scotch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scotch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A25EA81A6A377E00900281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3A25EA91A6A377E00900281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +55,10 @@
 		ED7894301A6B3B7A0056935F /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 		ED7894351A6B3BDA0056935F /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		ED7894361A6B3BDA0056935F /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
+		ED9836E91A6B7CB000C8D9C7 /* VideoProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoProcessing.swift; sourceTree = "<group>"; };
+		EDE3DF701A6B4B5200305192 /* FourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
+		EDE3DF711A6B4B5200305192 /* FourthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourthViewController.xib; sourceTree = "<group>"; };
+		EDE66C591A6B4CDA00FBA735 /* Scotch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scotch-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3A25ECF1A6A3B6700900281 /* MultipeerConnectivity.framework in Frameworks */,
+				59F462EEF97CFD618941FA09 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B60BE389F6C4BB06BADE4454 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				89562228FB9A627EFD8366B5 /* Pods.debug.xcconfig */,
+				1F7AD8FC2AA1D49BD2A4F736 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D3A25E9B1A6A377E00900281 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +98,7 @@
 				D3A25EBE1A6A377E00900281 /* ScotchTests */,
 				D3A25ED01A6A3B6900900281 /* Frameworks */,
 				D3A25EA51A6A377E00900281 /* Products */,
+				B60BE389F6C4BB06BADE4454 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,13 +114,17 @@
 		D3A25EA61A6A377E00900281 /* Scotch */ = {
 			isa = PBXGroup;
 			children = (
+				EDE66C591A6B4CDA00FBA735 /* Scotch-Bridging-Header.h */,
 				D3A25EA91A6A377E00900281 /* AppDelegate.swift */,
 				ED7894351A6B3BDA0056935F /* FirstViewController.swift */,
+				ED9836E91A6B7CB000C8D9C7 /* VideoProcessing.swift */,
 				ED7894361A6B3BDA0056935F /* FirstViewController.xib */,
 				ED78942F1A6B3B7A0056935F /* SecondViewController.swift */,
 				ED7894301A6B3B7A0056935F /* SecondViewController.xib */,
 				ED7894291A6B39A20056935F /* ThirdViewController.swift */,
 				ED78942A1A6B39A20056935F /* ThirdViewController.xib */,
+				EDE3DF701A6B4B5200305192 /* FourthViewController.swift */,
+				EDE3DF711A6B4B5200305192 /* FourthViewController.xib */,
 				D3A25EB21A6A377E00900281 /* Images.xcassets */,
 				D3A25EB41A6A377E00900281 /* LaunchScreen.xib */,
 				D3A25EA71A6A377E00900281 /* Supporting Files */,
@@ -143,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				D3A25ECE1A6A3B6700900281 /* MultipeerConnectivity.framework */,
+				44381145B49B0ED2C2E552EC /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -154,9 +181,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3A25EC51A6A377E00900281 /* Build configuration list for PBXNativeTarget "Scotch" */;
 			buildPhases = (
+				F77F356B5CFD8D799B837413 /* Check Pods Manifest.lock */,
 				D3A25EA01A6A377E00900281 /* Sources */,
 				D3A25EA11A6A377E00900281 /* Frameworks */,
 				D3A25EA21A6A377E00900281 /* Resources */,
+				7A6949DFFC3BFE124BC6E0FB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,6 +261,7 @@
 				D3A25EB61A6A377E00900281 /* LaunchScreen.xib in Resources */,
 				ED78942C1A6B39A20056935F /* ThirdViewController.xib in Resources */,
 				D3A25EB31A6A377E00900281 /* Images.xcassets in Resources */,
+				EDE3DF731A6B4B5200305192 /* FourthViewController.xib in Resources */,
 				ED7894321A6B3B7A0056935F /* SecondViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,12 +275,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7A6949DFFC3BFE124BC6E0FB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F77F356B5CFD8D799B837413 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D3A25EA01A6A377E00900281 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDE3DF721A6B4B5200305192 /* FourthViewController.swift in Sources */,
 				ED7894371A6B3BDA0056935F /* FirstViewController.swift in Sources */,
+				ED9836EA1A6B7CB000C8D9C7 /* VideoProcessing.swift in Sources */,
 				D3A25ECD1A6A3B4000900281 /* PeerConnector.swift in Sources */,
 				ED78942B1A6B39A20056935F /* ThirdViewController.swift in Sources */,
 				D3A25EAA1A6A377E00900281 /* AppDelegate.swift in Sources */,
@@ -367,21 +432,25 @@
 		};
 		D3A25EC61A6A377E00900281 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89562228FB9A627EFD8366B5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Scotch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		D3A25EC71A6A377E00900281 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F7AD8FC2AA1D49BD2A4F736 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Scotch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
 			};
 			name = Release;
 		};
