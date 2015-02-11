@@ -23,19 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         tabBarController = UITabBarController()
         
-//        let vc1 = FirstViewController(nibName: "FirstViewController", bundle: nil)
-//        let vc2 = SecondViewController(nibName: "SecondViewController", bundle: nil)
-//        let vc3 = ThirdViewController(nibName: "ThirdViewController", bundle: nil)
-//        let vc4 = FourthViewController(nibName: "FourthViewController", bundle: nil)
         let mainVC = MainViewController(nibName: "MainViewController", bundle: nil)
         
-//        vc1.tabBarItem = UITabBarItem(title: "First", image: nil, tag: 1)
-//        vc2.tabBarItem = UITabBarItem(title: "Second", image: nil, tag: 2)
-//        vc3.tabBarItem = UITabBarItem(title: "Third", image: nil, tag: 3)
-//        vc4.tabBarItem = UITabBarItem(title: "Fourth", image: nil, tag: 4)
-        
-//        tabBarController!.viewControllers = [vc1, vc2, vc3, vc4]
-//        window!.rootViewController = tabBarController
         window!.rootViewController = mainVC
         
         return true

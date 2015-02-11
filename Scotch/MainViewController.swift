@@ -27,6 +27,8 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
     var ourSide: Side?
     var LRLabel: UILabel?
     var ourVidURL: NSURL?
+    var progressHUD: MBProgressHUD?
+    var dotView: UIView?
     
     @IBOutlet var longPressRecognizer: UILongPressGestureRecognizer!
     
@@ -64,7 +66,7 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
         
 //        LRLabel = UILabel(frame: vibrancyView.frame)
         LRLabel = UILabel(frame: view.frame)
-        LRLabel!.center = CGPointMake(140, 426)
+        LRLabel!.center = CGPointMake(180, 326)
         LRLabel!.textAlignment = .Center
         LRLabel!.font = UIFont.systemFontOfSize(250)
         LRLabel!.textColor = UIColor.whiteColor()
@@ -76,7 +78,20 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
     }
 
     override func viewDidAppear(animated: Bool) {
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+//        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        progressHUD?.labelFont = UIFont.systemFontOfSize(30)
+        progressHUD?.labelText = "Pairing"
+        
+        UIGraphicsBeginImageContext(CGSizeMake(100, 100))
+        UIImage(named: "red-dot.png")!.drawInRect(CGRectMake(0, 0, 100, 100))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        dotView = UIView(frame: CGRectMake(138, 295, 100, 100))
+        dotView!.backgroundColor = UIColor(patternImage: newImage)
+        dotView?.hidden = true
+        view.addSubview(dotView!)
     }
     
     
@@ -86,13 +101,21 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
             ourRole = .Master
             connector.sendSignal(connector.getOneClientID(), messageType: .StartRecording)
             PBJVision.sharedInstance().startVideoCapture()
-            LRLabel!.hidden = true
+
+            dispatch_async(dispatch_get_main_queue(), {
+                self.LRLabel!.hidden = true
+                self.dotView?.hidden = false
+            })
         case .Changed:
             break
         default:
             connector.sendSignal(connector.getOneClientID(), messageType: .StopRecording)
             PBJVision.sharedInstance().endVideoCapture()
-            LRLabel!.hidden = false
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.dotView?.hidden = true
+                self.LRLabel!.hidden = false
+            })
         }
     }
     
@@ -142,8 +165,11 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
             LRLabel!.text = "R"
         }
         println("ourSide: \(ourSide?.rawValue)")
-        LRLabel!.hidden = false
-        MBProgressHUD.hideHUDForView(self.view, animated: true)
+//        dispatch_async(dispatch_get_main_queue(), {
+            self.LRLabel!.hidden = false
+            self.progressHUD?.hide(true)
+//        })
+        
         PBJVision.sharedInstance().startPreview()
     }
     
@@ -162,10 +188,18 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
             rightURL = ourVidURL
         }
         
-//        stitchVideos(leftURL!, rightURL!)
-        stitchVideos(leftURL!, rightURL!) { (result) -> Void in
-            let alert = UIAlertView(title: "Video Saved!", message: "Saved 3D video to camera roll.", delegate: self, cancelButtonTitle: nil, otherButtonTitles: "OK")
-            alert.show()
+        progressHUD!.mode = MBProgressHUDModeAnnularDeterminate
+        progressHUD?.labelFont = UIFont.systemFontOfSize(30)
+        progressHUD?.labelText = "Processing"
+        progressHUD?.show(true)
+        stitchVideos(leftURL!, rightURL!, progressHUD!) { (result) -> Void in
+//            self.progressHUD?.hide(true)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.progressHUD!.hide(true)
+                let alert = UIAlertView(title: "Video Saved!", message: "Saved 3D video to camera roll.", delegate: self, cancelButtonTitle: nil, otherButtonTitles: "OK")
+                alert.show()
+            })
+            
             return
         }
     }
@@ -174,12 +208,18 @@ class MainViewController: UIViewController, PeerConnectorDelegate, PBJVisionDele
         switch signalType {
         case .StartRecording:
             PBJVision.sharedInstance().startVideoCapture()
-            LRLabel!.hidden = true
+            dispatch_async(dispatch_get_main_queue(), {
+                self.LRLabel!.hidden = true
+                self.dotView?.hidden = false
+            })
             println("start recording")
             ourRole = .Slave
         case .StopRecording:
             PBJVision.sharedInstance().endVideoCapture()
-            LRLabel!.hidden = false
+            dispatch_async(dispatch_get_main_queue(), {
+                self.dotView?.hidden = true
+                self.LRLabel!.hidden = false
+            })
             println("stop recording")
         }
         

@@ -10,8 +10,13 @@ import Foundation
 import AVFoundation
 import AssetsLibrary
 
-func stitchVideos(url1: NSURL, url2: NSURL, completion: (result: String) -> Void){
+var exporter: AVAssetExportSession?
+var stillGoing = true
+
+func stitchVideos(url1: NSURL, url2: NSURL, progressHUD: MBProgressHUD, completion: (result: String) -> Void){
     // Based on https://abdulazeem.wordpress.com/2012/04/02/
+
+    progressHUD.progress = 0.0
     
     // Load movies
     let firstAsset: AVURLAsset = AVURLAsset(URL: url1, options: nil)
@@ -83,8 +88,17 @@ func stitchVideos(url1: NSURL, url2: NSURL, completion: (result: String) -> Void
         exporter.outputFileType = AVFileTypeQuickTimeMovie
         exporter.shouldOptimizeForNetworkUse = false
         
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            while(abs(exporter.progress - 1.0)>0.05 && stillGoing){
+                println("loading... : \(exporter.progress)");
+                progressHUD.progress = exporter.progress
+                usleep(200000);
+                }
+            return
+            });
+        
         exporter.exportAsynchronouslyWithCompletionHandler({
-            dispatch_async(dispatch_get_main_queue(), {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 if exporter.status == .Completed {
                     let assetsLibrary = ALAssetsLibrary()
                     
@@ -92,6 +106,11 @@ func stitchVideos(url1: NSURL, url2: NSURL, completion: (result: String) -> Void
                         assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(exporter.outputURL, completionBlock: {(NSURL, NSError) -> Void in
                             fileManager.removeItemAtPath(path, error: nil)
                             println("Saved to camera roll!")
+                            
+//                            dispatch_async(dispatch_get_main_queue(), {
+//                                    progressHUD.hide(true)
+//                                })
+                            stillGoing = false
                             completion(result: "Success")
                             return
                         })

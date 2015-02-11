@@ -14,17 +14,10 @@
 		D3A25EC21A6A377E00900281 /* ScotchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25EC11A6A377E00900281 /* ScotchTests.swift */; };
 		D3A25ECD1A6A3B4000900281 /* PeerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A25ECC1A6A3B4000900281 /* PeerConnector.swift */; };
 		D3A25ECF1A6A3B6700900281 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A25ECE1A6A3B6700900281 /* MultipeerConnectivity.framework */; };
-		ED78942B1A6B39A20056935F /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7894291A6B39A20056935F /* ThirdViewController.swift */; };
-		ED78942C1A6B39A20056935F /* ThirdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED78942A1A6B39A20056935F /* ThirdViewController.xib */; };
-		ED7894311A6B3B7A0056935F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED78942F1A6B3B7A0056935F /* SecondViewController.swift */; };
-		ED7894321A6B3B7A0056935F /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7894301A6B3B7A0056935F /* SecondViewController.xib */; };
-		ED7894371A6B3BDA0056935F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7894351A6B3BDA0056935F /* FirstViewController.swift */; };
-		ED7894381A6B3BDA0056935F /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED7894361A6B3BDA0056935F /* FirstViewController.xib */; };
 		ED9836EA1A6B7CB000C8D9C7 /* VideoProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9836E91A6B7CB000C8D9C7 /* VideoProcessing.swift */; };
 		ED9836F11A6B881F00C8D9C7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9836EF1A6B881F00C8D9C7 /* MainViewController.swift */; };
 		ED9836F21A6B881F00C8D9C7 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9836F01A6B881F00C8D9C7 /* MainViewController.xib */; };
-		EDE3DF721A6B4B5200305192 /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE3DF701A6B4B5200305192 /* FourthViewController.swift */; };
-		EDE3DF731A6B4B5200305192 /* FourthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EDE3DF711A6B4B5200305192 /* FourthViewController.xib */; };
+		ED9836F41A6BE86800C8D9C7 /* red-dot.png in Resources */ = {isa = PBXBuildFile; fileRef = ED9836F31A6BE86800C8D9C7 /* red-dot.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,17 +44,10 @@
 		D3A25EC11A6A377E00900281 /* ScotchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScotchTests.swift; sourceTree = "<group>"; };
 		D3A25ECC1A6A3B4000900281 /* PeerConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeerConnector.swift; path = Multipeer/PeerConnector.swift; sourceTree = "<group>"; };
 		D3A25ECE1A6A3B6700900281 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
-		ED7894291A6B39A20056935F /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
-		ED78942A1A6B39A20056935F /* ThirdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThirdViewController.xib; sourceTree = "<group>"; };
-		ED78942F1A6B3B7A0056935F /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		ED7894301A6B3B7A0056935F /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
-		ED7894351A6B3BDA0056935F /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		ED7894361A6B3BDA0056935F /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		ED9836E91A6B7CB000C8D9C7 /* VideoProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoProcessing.swift; sourceTree = "<group>"; };
 		ED9836EF1A6B881F00C8D9C7 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		ED9836F01A6B881F00C8D9C7 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		EDE3DF701A6B4B5200305192 /* FourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
-		EDE3DF711A6B4B5200305192 /* FourthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourthViewController.xib; sourceTree = "<group>"; };
+		ED9836F31A6BE86800C8D9C7 /* red-dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-dot.png"; sourceTree = "<group>"; };
 		EDE66C591A6B4CDA00FBA735 /* Scotch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scotch-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,16 +106,9 @@
 			children = (
 				EDE66C591A6B4CDA00FBA735 /* Scotch-Bridging-Header.h */,
 				D3A25EA91A6A377E00900281 /* AppDelegate.swift */,
-				ED7894351A6B3BDA0056935F /* FirstViewController.swift */,
 				ED9836E91A6B7CB000C8D9C7 /* VideoProcessing.swift */,
-				ED7894361A6B3BDA0056935F /* FirstViewController.xib */,
-				ED78942F1A6B3B7A0056935F /* SecondViewController.swift */,
-				ED7894301A6B3B7A0056935F /* SecondViewController.xib */,
-				ED7894291A6B39A20056935F /* ThirdViewController.swift */,
-				ED78942A1A6B39A20056935F /* ThirdViewController.xib */,
-				EDE3DF701A6B4B5200305192 /* FourthViewController.swift */,
-				EDE3DF711A6B4B5200305192 /* FourthViewController.xib */,
 				D3A25EB21A6A377E00900281 /* Images.xcassets */,
+				ED9836F31A6BE86800C8D9C7 /* red-dot.png */,
 				D3A25EB41A6A377E00900281 /* LaunchScreen.xib */,
 				D3A25EA71A6A377E00900281 /* Supporting Files */,
 				ED9836EF1A6B881F00C8D9C7 /* MainViewController.swift */,
@@ -263,13 +242,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED7894381A6B3BDA0056935F /* FirstViewController.xib in Resources */,
 				D3A25EB61A6A377E00900281 /* LaunchScreen.xib in Resources */,
-				ED78942C1A6B39A20056935F /* ThirdViewController.xib in Resources */,
 				D3A25EB31A6A377E00900281 /* Images.xcassets in Resources */,
-				EDE3DF731A6B4B5200305192 /* FourthViewController.xib in Resources */,
+				ED9836F41A6BE86800C8D9C7 /* red-dot.png in Resources */,
 				ED9836F21A6B881F00C8D9C7 /* MainViewController.xib in Resources */,
-				ED7894321A6B3B7A0056935F /* SecondViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,13 +296,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDE3DF721A6B4B5200305192 /* FourthViewController.swift in Sources */,
-				ED7894371A6B3BDA0056935F /* FirstViewController.swift in Sources */,
 				ED9836EA1A6B7CB000C8D9C7 /* VideoProcessing.swift in Sources */,
 				D3A25ECD1A6A3B4000900281 /* PeerConnector.swift in Sources */,
-				ED78942B1A6B39A20056935F /* ThirdViewController.swift in Sources */,
 				D3A25EAA1A6A377E00900281 /* AppDelegate.swift in Sources */,
-				ED7894311A6B3B7A0056935F /* SecondViewController.swift in Sources */,
 				ED9836F11A6B881F00C8D9C7 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,7 +421,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Scotch/Scotch-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -464,7 +436,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "../i3D/Scotch/Scotch-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./Scotch/Scotch-Bridging-Header.h";
 			};
 			name = Release;
 		};
